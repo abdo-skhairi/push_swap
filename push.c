@@ -1,7 +1,9 @@
-#include "../pushswap.h"
+#include "pushswap.h"
 
-void push(stack **stack1, stack **stack2)
+static void push(stack **stack1, stack **stack2)
 {
+    if(!stack1 || !(*stack1))
+        return;
     stack *tmp;
     tmp = *stack1;
     *stack1 = (*stack1)->next;

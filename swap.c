@@ -1,15 +1,16 @@
-#include "../pushswap.h"
+#include "pushswap.h"
 
-void swap(stack **stack1)
+static void swap(stack **stack1)
 {
     if (*stack1 == NULL || (*stack1)->next == NULL) 
         return;
-    stack *tmp1 = *stack1;
-    stack *tmp2 = (*stack1)->next;
 
-    tmp1->next = tmp2->next;
-    tmp2->next = tmp1;
-    *stack1 = tmp2;
+    stack *first = *stack1;
+    stack *second = (*stack1)->next;
+
+    first->next = second->next;
+    second->next = first;
+    *stack1 = second;
 }
 
 void sa(stack **stack_a)
