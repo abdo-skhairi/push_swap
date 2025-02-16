@@ -1,6 +1,6 @@
-#include "../pushswap.h"
+#include "pushswap.h"
 
-void rev_rotate(stack **stack1)
+static void rev_rotate(stack **stack1)
 {
 	if (!(*stack1) || !((*stack1)->next))
 		return;
@@ -8,7 +8,8 @@ void rev_rotate(stack **stack1)
 	stack *temp1 = *stack1;
 	stack *temp2 = *stack1;
 
-	while (temp2->next->next != NULL) {
+	while (temp2->next->next != NULL) 
+	{
 		temp2 = temp2->next;
 	}
 
@@ -21,15 +22,18 @@ void rev_rotate(stack **stack1)
 void	rra(stack **stack_a)
 {
 	rev_rotate(stack_a);
+	printf("rra\n");
 }
 
-void	rra(stack **stack_b)
+void	rrb(stack **stack_b)
 {
 	rev_rotate(stack_b);
+	printf("rrb\n");
 }
 
-void	rra(stack **stack_a, stack **stack_b)
+void	rrr(stack **stack_a, stack **stack_b)
 {
 	rev_rotate(stack_a);
 	rev_rotate(stack_b);
+	printf("rrr\n");
 }

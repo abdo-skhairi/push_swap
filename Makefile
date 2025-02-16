@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = $(wildcard *.c)
+SRC =   push.c pushswap.c split.c swap.c utils1.c rev_rotate.c rotate.c
 OBJ = $(SRC:.c=.o)
-EXEC = my_program
+EXEC = prog
 
 all: $(EXEC)
 

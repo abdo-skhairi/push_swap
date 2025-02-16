@@ -15,9 +15,11 @@ static void push(stack **stack1, stack **stack2)
 void    pb(stack **a, stack **b)
 {
     push(a, b);
+    printf("pb\n");
 }
 
 void    pa(stack **a, stack **b)
 {
     push(b, a);
+    printf("pa\n");
 }

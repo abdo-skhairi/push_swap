@@ -1,6 +1,6 @@
-#include "../pushswap.h"
+#include "pushswap.h"
 
-void	rotate(stack **stack1)
+static void	rotate(stack **stack1)
 {
 	stack *temp1;
 	stack *temp2;
@@ -21,14 +21,17 @@ void	rotate(stack **stack1)
 void	ra(stack **stack_a)
 {
 	rotate(stack_a);
+	printf("ra\n");
 }
 void	rb(stack **stack_b)
 {
 	rotate(stack_b);
+	printf("rb\n");
 }
 
 void	rr(stack **stack_a,stack **stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
+	printf("rr\n");
 }

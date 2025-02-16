@@ -2,11 +2,6 @@
 
 stack *new_node(int value)
 {
-
-
-
-
-    
     stack *node = (stack *)malloc(sizeof(stack));
     if (!node)
         return NULL;
@@ -55,6 +50,89 @@ void print_stack(stack *s, char *name)
     printf("\n");
 }
 
+int stack_size(stack *a)
+{
+    int i = 0;
+
+    while(a)
+    {
+        i++;
+        a = a->next;
+    }
+    return(i);
+}
+
+int is_sorted(stack *a)
+{
+    if (!a)
+        return (1);
+    while (a->next)
+    {
+        if (a->value > a->next->value)
+            return (0);
+        a = a->next;
+    }
+    return (1);
+}
+
+void    sort_3(stack **a)
+{
+    if (!a)
+        return ;
+    else if((((*a)->value) < ((*a)->next->value) && ((*a)->value) < ((*a)->next->next->value)) && (((*a)->next->value) > ((*a)->next->next->value)))
+    {
+        rra(a);
+        sa(a);
+    }
+    // else if((((*a)->value) > ((*a)->next->next->value) && ((*a)->value) > ((*a)->next->value)) && (((*a)->next->value) > ((*a)->next->next->value)))
+    // {
+    //     rra(a);
+    //     sa(a);
+    // }
+    else if((((*a)->value) > ((*a)->next->value) && ((*a)->next->value) < ((*a)->next->next->value)) && (((*a)->next->value) < ((*a)->value)))
+        sa(a);
+}
+
+void    sort_4(stack **a)
+{
+    if (!a)
+        return ;
+}
+
+// int     is_dublication(stack *a)
+// {
+//     int i;
+
+//     i = a->value;
+//     while(a)
+//     {
+//         if((a->next->value) == i)
+//             return(1);
+//         a = a->next;
+//     }
+//     return(0);
+// }
+
+void    sort_all(stack **a, stack **b)
+{
+    (void)b;
+    if(is_sorted(*a) == 1)
+        return;
+    // else if(is_dublication(*a) == 1)
+    // {
+    //     write(2, "Error\n", 6);
+    //     exit(1);
+    // }
+    else if (stack_size(*a) == 1)
+        return;
+    else if(stack_size(*a) == 2)
+        sa(a);
+    else if(stack_size(*a) == 3)
+        sort_3(a);
+    else if(stack_size(*a) == 4)
+        sort_4(a);
+}
+
 int main(int ac, char **av)
 {
     if (ac < 2)
@@ -66,12 +144,11 @@ int main(int ac, char **av)
     {
         if (validation(av[i]) == -1)
         {
-            printf("Error\n");
+            write(2, "Error\n", 6);
             exit(1);
         }
         i++;
     }
-
     char *temp = ft_strdup(av[1]);
     char *new_temp;
     i = 2;
@@ -93,11 +170,13 @@ int main(int ac, char **av)
     print_stack(a, "A");
 	print_stack(b, "B");
 
-	pb(&a, &b);
-	pb(&a, &b);
-	ss(&a, &b);
+	// pb(&a, &b);
+	// pb(&a, &b);
+	// ss(&a, &b);
+    printf("-------\n");
+    sort_all(&a, &b);
+    printf("-------\n");
 	print_stack(a, "A");
 	print_stack(b, "B");
-    // sort_all(&a, &b);
     return 0;
 }
