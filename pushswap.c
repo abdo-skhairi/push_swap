@@ -77,60 +77,68 @@ int is_sorted(stack *a)
 
 void    sort_3(stack **a)
 {
+    int first;
+    int second;
+    int third;
+
+    first = ((*a)->value);
+    second = ((*a)->next->value);
+    third = ((*a)->next->next->value);
     if (!a)
         return ;
-    else if((((*a)->value) < ((*a)->next->value) && ((*a)->value) < ((*a)->next->next->value)) && (((*a)->next->value) > ((*a)->next->next->value)))
+    if (second > first && second > third && first < third)
     {
         rra(a);
         sa(a);
     }
-    // else if((((*a)->value) > ((*a)->next->next->value) && ((*a)->value) > ((*a)->next->value)) && (((*a)->next->value) > ((*a)->next->next->value)))
-    // {
-    //     rra(a);
-    //     sa(a);
-    // }
-    else if((((*a)->value) > ((*a)->next->value) && ((*a)->next->value) < ((*a)->next->next->value)) && (((*a)->next->value) < ((*a)->value)))
-        sa(a);
+    if (second > first && second > third && first > third)
+        rra(a);
+    else if(first > second && first > third && third > second)
+    {
+        rra(a);
+        rra(a);
+    }
 }
 
-void    sort_4(stack **a)
-{
-    if (!a)
-        return ;
+int is_duplicate(stack *a) {
+    if (a == NULL) 
+        return 0;
+
+    stack *first = a;
+    stack *second;
+
+    while (first != NULL && first->next != NULL) {
+        second = first->next;
+        while (second != NULL) {
+            if (first->value == second->value) {
+                return 1;
+            }
+            second = second->next;
+        }
+        first = first->next;
+    }
+
+    return 0;
 }
-
-// int     is_dublication(stack *a)
-// {
-//     int i;
-
-//     i = a->value;
-//     while(a)
-//     {
-//         if((a->next->value) == i)
-//             return(1);
-//         a = a->next;
-//     }
-//     return(0);
-// }
 
 void    sort_all(stack **a, stack **b)
 {
     (void)b;
     if(is_sorted(*a) == 1)
         return;
-    // else if(is_dublication(*a) == 1)
-    // {
-    //     write(2, "Error\n", 6);
-    //     exit(1);
-    // }
+    else if(is_duplicate(*a) == 1)
+    {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
     else if (stack_size(*a) == 1)
         return;
     else if(stack_size(*a) == 2)
         sa(a);
     else if(stack_size(*a) == 3)
         sort_3(a);
-    else if(stack_size(*a) == 4)
-        sort_4(a);
+    else if(stack_size(*a) > 3)
+        sort_moves(a);
 }
 
 int main(int ac, char **av)
@@ -170,11 +178,9 @@ int main(int ac, char **av)
     print_stack(a, "A");
 	print_stack(b, "B");
 
-	// pb(&a, &b);
-	// pb(&a, &b);
-	// ss(&a, &b);
     printf("-------\n");
     sort_all(&a, &b);
+
     printf("-------\n");
 	print_stack(a, "A");
 	print_stack(b, "B");
