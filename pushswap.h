@@ -4,15 +4,31 @@
 #include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+
 
 typedef struct s_stack
 {
-	struct s_stack *next;
-	int value;
+	struct	s_stack *next;
+	struct	s_stack *target_node;
+	bool	is_in_first_half;
+	bool	cheap;
+	int		price;
+	int		index;
+	int		value;
 } stack;
 
-
-
+void	ft_strcpy(char *dest, const char *src);
+void	free_stacks(stack **a, stack **b);
+void	free_str_array(char **arr);
+void	creat_stack_elements(stack **a, char **str2);
+stack	*new_node(int value);
+void	set_all(stack *a, stack *b);
+int		stack_size(stack *a);
+stack	*find_smallest_node(stack	*a);
+void	set_price(stack *a, stack *b);
+void	set_target(stack *a, stack *b);
+void	set_index_position(stack *stack);
 void	rr(stack **stack_a,stack **stack_b);
 void	rb(stack **stack_b);
 void	ra(stack **stack_a);
@@ -31,8 +47,5 @@ int     ft_atoi(const char *str);
 int     validation(char *str);
 char    *ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-
-
 
 #endif

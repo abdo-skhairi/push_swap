@@ -36,10 +36,8 @@ int	ft_atoi(const char *str)
 int validation(char *str)
 {
 	int	i;
-	int check;
 
 	i = 0;
-	check = 0;
 	if((!(str[0] >= '0' && str[0] <= '9') && str[1] == '\0') || str[0] == '\0')
 		return(-1);
 	while(str[i])
@@ -108,36 +106,37 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (d);
 }
 
+void ft_strcpy(char *dest, const char *src)
+{
+    size_t i = 0;
+    while (src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+}
+
 char *ft_strjoin(char const *s1, char const *s2)
 {
     char    *str;
     size_t  s1len;
     size_t  s2len;
-    size_t  i;
 
-    if (!s1 && s2)
-        return ((char *)s2);
-    if (s1 && !s2)
-        return ((char *)s1);
     if (!s1 && !s2)
         return (NULL);
-    s1len = ft_strlen(s1);
-    s2len = ft_strlen(s2);
+    s1len = 0;
+    if (s1)
+        s1len = ft_strlen(s1);
+    s2len = 0;
+    if (s2)
+        s2len = ft_strlen(s2);
     str = malloc(sizeof(char) * (s1len + s2len + 1));
     if (!str)
         return (NULL);
-    i = 0;
-    while (i < s1len)
-    {
-        str[i] = s1[i];
-        i++;
-    }
-    size_t j = 0;
-    while (j < s2len)
-    {
-        str[i + j] = s2[j];
-        j++;
-    }
+    if (s1)
+        ft_strcpy(str, s1);
+    if (s2)
+        ft_strcpy(str + s1len, s2);
     str[s1len + s2len] = '\0';
     return (str);
 }
