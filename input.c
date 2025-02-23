@@ -30,6 +30,11 @@ int	ft_atoi(const char *str)
 		total = total * 10 + (*str - '0');
 		str++;
 	}
+	if ((sign == 1 && total > INT_MAX) || (sign == -1 && total > (long long)INT_MAX + 1))
+	{
+		printf("Error\n");
+		exit(1);
+	}
 	return (total * sign);
 }
 
