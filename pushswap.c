@@ -11,85 +11,28 @@ void print_stack(stack *s, char *name)
 	printf("\n");
 }
 
-int is_sorted(stack *a)
-{
-	if (!a)
-	return (1);
-	while (a->next)
-	{
-		if (a->value > a->next->value)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-int is_higher(int value, stack *a)
-{
-	a = a->next;
-	while(a)
-	{
-		if(value < a->value)
-		return (0);
-	a = a->next;
-}
-return(1);
-}
-
-void    sort_3(stack **a)
-{
-	if (!a)
-	return ;
-if(is_higher((*a)->value, *a))
-ra(a);
-else if (is_higher((*a)->next->value, *a))
-rra(a);
-if (is_sorted(*a) == 0)
-sa(a);
-}
-
-int is_duplicate(stack **a) 
-{
-	if (a == NULL || *a == NULL)
-		return 0;
-
-	stack *first = *a;
-	stack *second;
-
-	while (first != NULL) 
-	{
-		second = first->next;
-		while (second != NULL) 
-		{
-			if (first->value == second->value) 
-				return 1;
-		second = second->next;
-		}
-	first = first->next;
-	}
-	return 0;
-}
-
 void sort(stack **a, stack **b) 
 {
 	(void)b;
-	int size = stack_size(*a);
+	int size;
+	
+	size = stack_size(*a);
 	if (is_duplicate(a) == 1) 
 	{
 		write(2, "Error\n", 6);
 		exit(1);
 	}
 	if (is_sorted(*a))
-	return;
+		return;
 	size = stack_size(*a);
 	if (size == 1)
-	return;
+		return;
 	else if (size == 2)
-	sa(a);
+		sa(a);
 	else if (size == 3)
 	sort_3(a);
-	// else if (size > 3)
-	//     sort_moves(a);
+	else if (size > 3)
+	    sort_all_moves(a, b);
 }
 
 int main(int ac, char **av)
