@@ -25,7 +25,7 @@ int is_duplicate(stack **a)
 int is_sorted(stack *a)
 {
 	if (!a || !a->next)
-	return (1);
+		return (1);
 	while (a->next)
 	{
 		if (a->value > a->next->value)

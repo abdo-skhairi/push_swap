@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC =   push.c pushswap.c split.c swap.c input.c rev_rotate.c rotate.c set_all.c creat_stacks.c free.c check_stacks.c sort_big_stack.c
 OBJ = $(SRC:.c=.o)
-EXEC = prog
+EXEC = push_swap
 
 all: $(EXEC)
 

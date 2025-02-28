@@ -13,7 +13,6 @@ void print_stack(stack *s, char *name)
 
 void sort(stack **a, stack **b) 
 {
-	(void)b;
 	int size;
 	
 	size = stack_size(*a);
@@ -30,7 +29,7 @@ void sort(stack **a, stack **b)
 	else if (size == 2)
 		sa(a);
 	else if (size == 3)
-	sort_3(a);
+		sort_3(a);
 	else if (size > 3)
 	    sort_all_moves(a, b);
 }
@@ -69,15 +68,15 @@ int main(int ac, char **av)
 	free(temp);
 	creat_stack_elements(&a, str2);
 	free_str_array(str2);
-	print_stack(a, "A");
-	print_stack(b, "B");
+	// print_stack(a, "A");
+	// print_stack(b, "B");
 
-	printf("-------\n");
+	// printf("-------\n");
 	sort(&a, &b);
 
-	printf("-------\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
+	// printf("-------\n");
+	// print_stack(a, "A");
+	// print_stack(b, "B");
 	free_stacks(&a, &b);
 	return 0;
 }

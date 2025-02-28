@@ -18,11 +18,16 @@ typedef struct s_stack
 	int		value;
 } stack;
 
+stack	*find_smallest_node(stack	*a);
+stack	*find_cheapest(stack	*stack);
+stack	*find_smallest_node(stack	*a);
+stack	*new_node(int value);
+void	sort_5(stack **a, stack **b);
+
 void	print_stack(stack *s, char *name); //print_stack
 int		calculate_cost(stack *node);
-stack	*find_cheapest(stack	*stack);
 void	moves(stack **a, stack **b);
-stack	*find_smallest_node(stack	*a);
+void	creat_stack_elements(stack **a, char **str2);
 int		is_higher(int value ,stack *a);
 int		is_sorted(stack *a);
 int		is_duplicate(stack **a);
@@ -31,11 +36,8 @@ void    sort_all_moves(stack **a, stack **b);
 void	ft_strcpy(char *dest, const char *src);
 void	free_stacks(stack **a, stack **b);
 void	free_str_array(char **arr);
-void	creat_stack_elements(stack **a, char **str2);
-stack	*new_node(int value);
 void	set_all_nodes(stack *a, stack *b);
 int		stack_size(stack *a);
-stack	*find_smallest_node(stack	*a);
 void	set_price(stack *a, stack *b);
 void	set_target(stack *a, stack *b);
 void	set_index_position(stack *stack);

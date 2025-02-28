@@ -1,30 +1,27 @@
 #include "pushswap.h"
 #include <limits.h> // For LONG_MAX
 
-void set_price(stack *a, stack *b)
-{
-    int len_a, len_b;
 
-    if (!a || !b)
+void set_index_position(stack *stack)
+{
+    int i; 
+    int center;
+
+    if (!stack)
         return;
 
-    len_a = stack_size(a);
-    len_b = stack_size(b);
-
-    while (b)
+    i = 0;
+    center = stack_size(stack) / 2;
+    
+    while (stack)
     {
-        b->price = b->index;
-        if (!(b->is_in_first_half))
-            b->price = len_b - b->index;
-
-        if (b->target_node)
-        {
-            if (b->is_in_first_half)
-                b->price += b->target_node->index;
-            else
-                b->price += len_a - b->target_node->index;
-        }
-        b = b->next;
+        stack->index = i;
+        if(i <= center)
+            stack->is_in_first_half = true;
+        else
+            stack->is_in_first_half = false;
+        stack = stack->next;
+        i++;
     }
 }
 
@@ -35,49 +32,49 @@ void set_target(stack *a, stack *b)
     long target_value;
 
     if (!a || !b)
-        return;
+    return;
 
-    while (b)
+while (b)
+{
+    current_in_a = a;
+    target_value = LONG_MAX;
+    
+    while (current_in_a)
     {
-        current_in_a = a;
-        target_node = NULL;
-        target_value = LONG_MAX;
-
-        while (current_in_a)
+        if (current_in_a->value > b->value && current_in_a->value < target_value)
         {
-            if (current_in_a->value > b->value && current_in_a->value < target_value)
-            {
-                target_value = current_in_a->value;
-                target_node = current_in_a;
-            }
-            current_in_a = current_in_a->next;
+            target_value = current_in_a->value;
+            target_node = current_in_a;
         }
-
-        if (!target_node) 
-            b->target_node = find_smallest_node(a);
-        else
-            b->target_node = target_node;
-
-        b = b->next;
+        current_in_a = current_in_a->next;
     }
+    
+    if (LONG_MAX == target_value)
+    b->target_node = find_smallest_node(a);
+    else
+    b->target_node = target_node;
+
+    b = b->next;
+}
 }
 
-void set_index_position(stack *stack)
+void set_price(stack *a, stack *b)
 {
-    int i, center;
+    int len_a, len_b;
 
-    if (!stack)
-        return;
-
-    i = 0;
-    center = stack_size(stack) / 2;
-
-    while (stack)
+    len_a = stack_size(a);
+    len_b = stack_size(b);
+    while (b)
     {
-        stack->index = i;
-        stack->is_in_first_half = (i <= center);
-        stack = stack->next;
-        i++;
+        b->price = b->index;
+        if (!(b->is_in_first_half))
+            b->price = len_b - b->index;
+
+        if (b->target_node->is_in_first_half)
+            b->price += b->target_node->index;
+        else
+            b->price += len_a - (b->target_node->index);
+        b = b->next;
     }
 }
 
@@ -103,7 +100,6 @@ void set_cheap_node(stack *b)
         }
         b = b->next;
     }
-
     if (cheap_node)
         cheap_node->cheap = 1;
 }
