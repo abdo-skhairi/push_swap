@@ -6,6 +6,7 @@ EXEC = push_swap
 
 all: $(EXEC)
 
+
 $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC)
 

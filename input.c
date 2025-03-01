@@ -10,6 +10,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+
 int	ft_atoi(const char *str)
 {
 	int					sign;

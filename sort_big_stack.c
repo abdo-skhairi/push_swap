@@ -107,3 +107,5 @@ void    sort_all_moves(stack **a, stack **b)
 			rra(a);
 	}
 }
+
+

@@ -18,6 +18,7 @@ static void	rotate(stack **stack1)
 	temp1->next = NULL;
 }
 
+
 void	ra(stack **stack_a)
 {
 	rotate(stack_a);

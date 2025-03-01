@@ -34,6 +34,7 @@ void sort(stack **a, stack **b)
 	    sort_all_moves(a, b);
 }
 
+
 int main(int ac, char **av)
 {
 	if (ac < 2)

@@ -115,3 +115,5 @@ void set_all_nodes(stack *a, stack *b)
     set_price(a, b);
     set_cheap_node(b);
 }
+
+

@@ -1,5 +1,6 @@
 #include "pushswap.h"
 
+
 static void push(stack **stack1, stack **stack2)
 {
     if(!stack1 || !(*stack1))

@@ -61,6 +61,7 @@ stack *find_cheapest(stack *b)
     return NULL;
 }
 
+
 // corect
 stack *find_smallest_node(stack *a)
 {

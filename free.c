@@ -11,6 +11,7 @@ void free_str_array(char **arr)
 	free(arr);
 }
 
+
 void free_stacks(stack **a, stack **b)
 {
     if (a) 

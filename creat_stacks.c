@@ -12,6 +12,7 @@ int stack_size(stack *a)
 	return(i);
 }
 
+
 stack *new_node(int value)
 {
 	stack *node = (stack *)malloc(sizeof(stack));

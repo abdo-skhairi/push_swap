@@ -19,6 +19,7 @@ static void rev_rotate(stack **stack1)
 	*stack1 = last;
 }
 
+
 void	rra(stack **stack_a)
 {
 	rev_rotate(stack_a);

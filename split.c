@@ -18,6 +18,7 @@ static	size_t	ft_count(char const *s, char c)
 	return (count);
 }
 
+
 static void	cfree(char **p)
 {
 	size_t	i;

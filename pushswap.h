@@ -24,6 +24,7 @@ stack	*find_smallest_node(stack	*a);
 stack	*new_node(int value);
 void	sort_5(stack **a, stack **b);
 
+
 void	print_stack(stack *s, char *name); //print_stack
 int		calculate_cost(stack *node);
 void	moves(stack **a, stack **b);
